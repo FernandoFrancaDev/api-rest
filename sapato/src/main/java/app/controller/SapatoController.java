@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Sapato;
@@ -72,6 +73,35 @@ public class SapatoController {
 		}
 		
 	}
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Sapato>> findByNome(@RequestParam String nome){
+		try {
+			List<Sapato> lista = this.sapatoService.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/findByMarca")
+	public ResponseEntity<List<Sapato>> findByMarca(@RequestParam long id){
+		try {
+			List<Sapato> lista = this.sapatoService.findByMarca(id);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 
-
+	}
+	@GetMapping("/findAcimaTamanho")
+	public ResponseEntity<List<Sapato>> findAcimaTamanho(@RequestParam String tamanho){
+		try {
+			List<Sapato> lista = this.sapatoService.findAcimaTamanho(tamanho);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

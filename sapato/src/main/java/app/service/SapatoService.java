@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.entity.Marca;
 import app.entity.Sapato;
 import app.repository.SapatoRepository;
 
@@ -34,6 +35,17 @@ public class SapatoService {
 	public Sapato findById(long id) {
 		Sapato sapato = this.sapatoRepository.findById(id).get();
 		return sapato;
+	}
+	public List<Sapato> findByNome(String nome){
+		return this.sapatoRepository.findByNome(nome);
+	}
+	public List<Sapato> findByMarca(long id){
+		Marca marca = new Marca();
+		marca.setId(id);
+		return this.sapatoRepository.findByMarca(marca);
+	}
+	public List<Sapato> findAcimaTamanho(String tamanho){
+		return this.sapatoRepository.findAcimaTamanho(tamanho);
 	}
 
 }
