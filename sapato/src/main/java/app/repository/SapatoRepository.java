@@ -16,7 +16,7 @@ public interface SapatoRepository extends JpaRepository<Sapato, Long> {
 	
 	//	public List<Sapato> findByMarcaNome(String nome);
 	
-	@Query("SELECT c FROM Sapato c WHERE c.tamanho > :tamanho")
+	@Query("FROM Sapato c WHERE c.tamanho > :tamanho")
 	public List<Sapato> findAcimaTamanho(String tamanho);
 	
 

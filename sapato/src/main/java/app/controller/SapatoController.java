@@ -77,8 +77,7 @@ public class SapatoController {
 	public ResponseEntity<List<Sapato>> findByNome(@RequestParam String nome){
 		try {
 			List<Sapato> lista = this.sapatoService.findByNome(nome);
-			return new ResponseEntity<>(lista, HttpStatus.OK);
-			
+			return new ResponseEntity<>(lista, HttpStatus.OK);			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
