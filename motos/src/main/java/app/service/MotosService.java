@@ -16,15 +16,28 @@ public class MotosService {
 	@Autowired
 	MotosRepository motosRepository;
 	
-	public String save(Motos motos) {
-		
-		this.motosRepository.save(motos);
-		
+	public String save(Motos motos) {		
+		this.motosRepository.save(motos);		
 		return "Moto Salva com sucesso";
 	}
 	
-	public Motos findById(Long id) {
-		
+	public String update(Motos motos, long id) {
+		motos.setId(id);
+		this.motosRepository.save(motos);		
+		return "Moto Salva com sucesso";
+	}
+	
+	public String delete(long id) {		
+		this.motosRepository.deleteById(id);	
+		return "Moto Salva com sucesso";
+	}
+	
+	public List<Motos> findAll() {		
+		List<Motos> lista = this.motosRepository.findAll();
+		return lista;
+	}
+	
+	public Motos findById(Long id) {		
 		Optional<Motos> motos = this.motosRepository.findById(id);
 		return motos.get();
 		
