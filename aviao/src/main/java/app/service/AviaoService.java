@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Aviao;
+import app.entity.Marca;
 import app.repository.AviaoRepository;
 
 @Service
@@ -34,6 +35,18 @@ public class AviaoService {
 	public Aviao FindById(long id) {
 		Aviao aviao = this.aviaoRepository.findById(id).get();
 		return aviao;
+	}
+	public List<Aviao> findByNome(String nome){
+		return this.aviaoRepository.findByNome(nome);
+	}
+	public List<Aviao> findByMarca(long id){
+		Marca marca = new Marca();
+		marca.setId(id);
+		return this.aviaoRepository.findByMarca(marca);
+	}
+	public List<Aviao> findAcimaAno (int ano){
+		return this.aviaoRepository.findAcimaAno(ano);
+		
 	}
 
 }

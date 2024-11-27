@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Aviao;
@@ -71,6 +72,33 @@ public class AviaoController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 		
+	}
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Aviao>> findByNome(@RequestParam String nome){
+		try {
+			List<Aviao> lista = this.aviaoService.findByNome(nome);
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}		
+	}
+	@GetMapping("/findByMarca")
+	public ResponseEntity<List<Aviao>> findByMarca(@RequestParam long id){
+		try {
+			List<Aviao> lista = this.aviaoService.findByMarca(id);
+			return new ResponseEntity<>(lista, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/findAcimaAno")
+	public ResponseEntity<List<Aviao>> findAcimaAno (@RequestParam int ano){
+		try {
+			List<Aviao> lista = this.aviaoService.findAcimaAno(ano);
+			return new ResponseEntity<>(lista, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }
