@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Bone;
+import app.entity.Entrada;
+import app.entity.Saida;
 import app.service.BoneService;
 
 @RestController
@@ -69,6 +72,42 @@ public class BoneController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 			
+	}
+	@GetMapping("/findByNome")
+	public ResponseEntity<List<Bone>> findByNome(@RequestParam String nome){
+		try {
+		List<Bone> lista = this.boneService.findByNome(nome);
+		return new ResponseEntity<>(lista, HttpStatus.OK);				
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
+	}
+	@GetMapping("/findByMarca")
+	public ResponseEntity<List<Bone>> findByMarca(@RequestParam long id){
+		try {
+			List<Bone> lista = this.boneService.findByMarca(id);
+			return new ResponseEntity<>(lista, HttpStatus.OK);	
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/findAcimaAno")
+	public ResponseEntity<List<Bone>> findAcimaAno (@RequestParam int anoFabricacao){
+		try {
+			List<Bone> lista = this.boneService.findAcimaAno(anoFabricacao);
+			return new ResponseEntity<>(lista, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/somar")
+	public ResponseEntity<Saida> calcular(@RequestBody Entrada entrada) {
+		try {
+			Saida saida = this.boneService.calcular(entrada);
+			return new ResponseEntity<>(saida, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+	}
 
 }
