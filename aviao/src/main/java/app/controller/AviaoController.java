@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Aviao;
+import app.entity.Entrada;
+import app.entity.Resultado;
 import app.service.AviaoService;
 
 @RestController
@@ -99,6 +101,15 @@ public class AviaoController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
+	}
+	@GetMapping("/somar")
+	public ResponseEntity<Resultado> calcular(@RequestBody Entrada entrada) {
+		try {
+			Resultado resultado = this.aviaoService.calcular(entrada);
+			return new ResponseEntity<>(resultado, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+				}			
 	}
 
 }

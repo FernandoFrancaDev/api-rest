@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Aviao;
+import app.entity.Entrada;
 import app.entity.Marca;
+import app.entity.Resultado;
 import app.repository.AviaoRepository;
 
 @Service
@@ -45,8 +47,20 @@ public class AviaoService {
 		return this.aviaoRepository.findByMarca(marca);
 	}
 	public List<Aviao> findAcimaAno (int ano){
-		return this.aviaoRepository.findAcimaAno(ano);
-		
+		return this.aviaoRepository.findAcimaAno(ano);		
+	}
+	public Resultado calcular(Entrada entrada) {
+		Resultado resultado = new Resultado();
+		resultado.setSoma(this.somar(entrada.getLista()));
+				
+		return resultado;
+	}	
+	public int somar(List<Integer> lista) {
+		int soma = 0;
+		for(int i = 0; i < lista.size(); i++) {
+			soma += lista.get(i);
+		}		
+		return soma ;
 	}
 
 }
