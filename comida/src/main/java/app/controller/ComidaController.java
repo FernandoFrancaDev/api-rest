@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Comida;
+import app.entity.Entrada;
+import app.entity.Saida;
 import app.service.ComidaService;
 
 @RestController
@@ -96,6 +98,15 @@ public class ComidaController {
 			return new ResponseEntity<>(lista, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	@GetMapping("/somar")
+	public ResponseEntity<Saida> calcular(@RequestBody Entrada entrada) {
+		try {
+			Saida saida = this.comidaService.calcular(entrada);
+			return new ResponseEntity<>(saida, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 

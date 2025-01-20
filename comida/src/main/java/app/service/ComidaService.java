@@ -1,5 +1,6 @@
 package app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Comida;
+import app.entity.Entrada;
 import app.entity.Marca;
+import app.entity.Saida;
 import app.repository.ComidaRepository;
 
 @Service
@@ -48,6 +51,17 @@ public class ComidaService {
 	}
 	public List<Comida> findAcimaValidade (int validade){
 		return this.comidaRepository.findAcimaValidade(validade);		
+	}
+	public Saida calcular(Entrada entrada) {
+		Saida saida = new Saida();
+		saida.setSoma(this.somar(entrada.getLista()));		
+		return saida;
+	}
+	public int somar(List<Integer> lista) {
+		int soma = 0;
+		for(int i = 0; i < lista.size(); i++)
+			soma += lista.get(i);
+		return soma;
 	}
 
 }
