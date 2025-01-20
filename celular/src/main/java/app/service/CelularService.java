@@ -40,16 +40,19 @@ public class CelularService {
 		Optional<Celular> celular = this.celularRepository.findById(id);
 		return celular.get();
 	}
-	public Resultado somar(Entrada entrada) {		
+	
+	public Resultado calcular(Entrada entrada) {		
 		Resultado resultado = new Resultado();
-		Integer soma = 0;
-				
-		if(entrada.getLista() != null)
-			for(int i = 0; i < entrada.getLista().size(); i++) {
-				soma = soma + entrada.getLista().get(i);
-			}
-		resultado.setSoma(soma);
+		resultado.setSoma(this.somar(entrada.getLista()));
 		return resultado;
+	}
+	public int somar(List<Integer>lista) {
+		Integer soma = 0;		
+		if(lista != null)
+			for(int i = 0; i < lista.size(); i++) {
+				soma += lista.get(i);
+			}
+		return soma;
 	}
 	
 	public List<Celular>findByNome(String nome){

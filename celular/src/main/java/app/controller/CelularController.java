@@ -73,16 +73,14 @@ public class CelularController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);		
 		}		
 	}
-	@GetMapping("/executar")
+	@GetMapping("/calcular")
 	public ResponseEntity<Resultado>scalcular(@RequestBody Entrada entrada){
 		
 		try {
-			Resultado resultado = this.celularService.somar(entrada);
-			return new ResponseEntity<Resultado>(resultado, HttpStatus.OK);
-			
+			Resultado resultado = this.celularService.calcular(entrada);
+			return new ResponseEntity<Resultado>(resultado, HttpStatus.OK);			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);			
-			
 		}
 	}
 	@GetMapping("/findByNome")
