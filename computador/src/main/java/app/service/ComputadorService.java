@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Computador;
+import app.entity.Entrada;
 import app.entity.Marca;
+import app.entity.Saida;
 import app.repository.ComputadorRepository;
 
 @Service
@@ -49,6 +51,17 @@ public class ComputadorService {
 		public List<Computador> findAcimaValor (double valor){
 		List<Computador> lista = this.computadorRepository.findAcimaValor(valor);
 		return lista;
+		}
+		public Saida calcular(Entrada entrada) {
+			Saida saida = new Saida();
+			saida.setSoma(this.somar(entrada.getLista()));
+			return saida;
+		}
+		public int somar(List<Integer>lista) {
+			int soma = 0;
+			for(int i = 0; i < lista.size(); i++)
+				soma += lista.get(i);			
+			return soma;
 		}
 		
 }
