@@ -1,5 +1,7 @@
 package app.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +24,6 @@ public class Phone {
 	private String nome;
 	private int valor;
 	
+	List<Integer> lista;
 
 }
