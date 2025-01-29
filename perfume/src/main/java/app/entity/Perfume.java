@@ -1,6 +1,8 @@
 // Deus o criador dos meus projetos. Jesus é o Senhor deste projeto
 package app.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,6 @@ public class Perfume {
 	private String nome;
 	private int preco;
 	
-	
+	List<Integer>lista ;
 
 }
