@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Oculos;
+import app.entity.Saida;
 import app.service.OculosService;
 
 @RestController
@@ -50,6 +51,15 @@ public class OculosController {
 		try {
 			List<Oculos>lista = this.oculosService.findAll();
 			return new ResponseEntity<>(lista, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+	}
+	@GetMapping("/calcular")
+	public ResponseEntity<Saida> calcular(@RequestBody Oculos oculos) {
+		try {
+			Saida saida = this.oculosService.calcular(oculos);
+			return new ResponseEntity<>(saida, HttpStatus.OK);			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
