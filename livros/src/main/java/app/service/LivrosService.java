@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Livros;
+import app.entity.Saida;
 import app.repository.LivrosRepository;
 
 @Service
@@ -28,5 +29,18 @@ public class LivrosService {
 		List<Livros> lista = this.livrosRepository.findAll();
 		return lista;
 	}
+	public Saida calcular(Livros livros){
+		Saida saida = new Saida();
+		saida.setSoma(this.somar(livros.getLista()));
+		return null;
+	}
+	public int somar (List<Integer> lista) {
+		int soma = 0;
+		for(int i = 0; i < lista.size(); i++)
+			if(lista.get(i) != null)
+			soma += lista.get(i);
+		return soma;
+	}
+	
 
 }
