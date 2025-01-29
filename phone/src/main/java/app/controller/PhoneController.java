@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Phone;
+import app.entity.Saida;
 import app.service.PhoneService;
 
 @RestController
@@ -67,6 +68,15 @@ public class PhoneController {
 			return new ResponseEntity<>(phone, HttpStatus.OK);			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_GATEWAY);
+		}
+	}
+	@GetMapping("/somar")
+	public ResponseEntity<Saida> calcular(Phone phone) {
+		try {
+			Saida saida = this.phoneService.calcular(phone);
+			return new ResponseEntity<>(saida, HttpStatus.OK);			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 	}
 

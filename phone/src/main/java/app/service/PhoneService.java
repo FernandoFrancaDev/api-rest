@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.entity.Phone;
+import app.entity.Saida;
 import app.repository.PhoneRepository;
 @Service
 public class PhoneService {
@@ -33,6 +34,18 @@ public class PhoneService {
 	public Phone findById(long id) {
 		Phone phone = this.phoneRepository.findById(id).get();
 		return phone;
+	}
+	public Saida calcular(Phone phone) {
+		Saida saida = new Saida();
+		saida.setSoma(this.somar(phone.getLista()));
+		return null;
+	}
+	public int somar(List<Integer> lista) {
+		int soma = 0;
+		for(int i = 0; i < lista.size(); i++)
+			if(lista.get(i) != null)
+			soma += lista.get(i);
+		return soma;		
 	}
 	
 	
