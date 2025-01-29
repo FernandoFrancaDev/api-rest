@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.entity.Camera;
+import app.entity.Saida;
 import app.service.CameraService;
 
 @RestController
 @RequestMapping("/api/camera")
-public class CamaraController {
+public class CameraController {
 	
 	@Autowired
 	CameraService cameraService;
@@ -67,8 +68,17 @@ public class CamaraController {
 			return new ResponseEntity<>(camera, HttpStatus.BAD_GATEWAY);			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_GATEWAY);
-		}
-	
+		}	
 	}
+	@GetMapping("/somar")
+	public ResponseEntity<Saida> calcucular(@RequestBody Camera camera) {
+		try {
+			Saida saida = this.cameraService.calcular(camera);
+			return new ResponseEntity<>(saida, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+	}
+	
 
 }
