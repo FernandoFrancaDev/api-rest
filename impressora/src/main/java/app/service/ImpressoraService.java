@@ -17,17 +17,18 @@ public class ImpressoraService {
 	@Autowired
 	private ImpressoraRepository impressoraRepository;
 	
-	public Resultado somar(Entrada entrada) {
+	public Resultado calcular(Entrada entrada) {
 		Resultado resultado = new Resultado();
-		Integer soma = 0;
-		
-		if(entrada.getLista() != null)
-			for(int i = 0; i < entrada.getLista().size(); i++) {
-				soma = soma + entrada.getLista().get(i);
-			}
-		resultado.setSoma(soma);
+		resultado.setSoma(this.somar(entrada.getLista()));		
 		return resultado;
 	}
+	public int somar(List<Integer> lista) {
+		int soma = 0;	
+		for(int i = 0; i < lista.size(); i++) 
+			if(lista.get(i) != null)
+			soma = soma + lista.get(i);
+		return soma;
+		}
 	
 	public String save(Impressora impressora) {
 		

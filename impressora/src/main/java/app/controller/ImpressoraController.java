@@ -27,7 +27,7 @@ public class ImpressoraController {
 	@GetMapping("/calcular")
 	public ResponseEntity<Resultado> calcular(@RequestBody Entrada entrada){		
 		try {
-			Resultado resultado = this.impressoraService.somar(entrada);
+			Resultado resultado = this.impressoraService.calcular(entrada);
 			return new ResponseEntity<Resultado>(resultado, HttpStatus.OK);				
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);			

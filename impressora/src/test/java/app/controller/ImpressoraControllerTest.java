@@ -35,7 +35,7 @@ public class ImpressoraControllerTest {
 		lista.add(new Impressora(3, "Cannon", "Ca2000", "Cannon", 2010));
 		lista.add(new Impressora(4, "Samsung", "SGB3035", "Samsung", 2014));
 		
-		Impressora impressora = new Impressora(4, "Samsung", "SGB3035", "Samsung", 2014);
+		Impressora impressora = new Impressora(4, "Samsung", "SGB3035", "HP", 2014);
 		
 		when(this.impressoraRepository.findAll()).thenReturn(lista);
 		when(this.impressoraRepository.findById(-1L)).thenReturn(Optional.of(impressora));
@@ -65,7 +65,7 @@ public class ImpressoraControllerTest {
 	@Test
 	void cenario05() {
 		ResponseEntity<Impressora>retorno = this.impressoraController.findById(1L);
-		assertEquals(2014, retorno.getBody().getAno());
+		assertEquals("HP" , retorno.getBody().getMarca());
 	}
 
 }
